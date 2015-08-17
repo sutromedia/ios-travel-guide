@@ -1,0 +1,34 @@
+/*
+
+File: TheElements_Prefix.pch
+Abstract: This file is included for support purposes and isn't necessary for
+understanding this sample.
+
+Version: 1.0
+
+*/
+
+//
+// Prefix header for all source files of the 'TheElements' target in the 'TheElements' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+	#import "Constants.h"
+	#import "Props.h"
+    #import "SMLog.h"
+    #import "ActivityLogger.h"
+
+
+#define LogMethod() NSLog(@"logged method call: -[%@ %@] (line %d)", self, NSStringFromSelector(_cmd), __LINE__)
+
+#define DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \
+static dispatch_once_t pred = 0; \
+__strong static id _sharedObject = nil; \
+dispatch_once(&pred, ^{ \
+_sharedObject = block(); \
+}); \
+return _sharedObject; \
+
+#endif
